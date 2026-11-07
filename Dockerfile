@@ -13,5 +13,8 @@ WORKDIR /app
 COPY --from=builder /app/NABARI .
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 
+# distroless-style non-root uid:gid。scratch なので /etc/passwd は無く数値で指定。
+USER 65532:65532
+
 EXPOSE 34165
 CMD ["./NABARI"]
